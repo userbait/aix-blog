@@ -1,8 +1,7 @@
 # aix-blog
-Title:
+Title: 피싱사이트 분류
 Members: 
- Name2, Department, Email
- Name3, Department, Email …
+  권성현, 김태은…
 I. Proposal (Option 1 or 2) – This should be filled by Nov. 8
 - Motivation: Why are you doing this?
 - What do you want to see at the end?
