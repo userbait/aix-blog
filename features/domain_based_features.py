@@ -4,7 +4,7 @@ import sys
 import pandas as pd
 
 sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
-import api_info
+import config
 
 import advertools as adv
 from urllib.parse import urlparse
@@ -19,8 +19,8 @@ def is_indexed(url):
     :return: boolean
     """
 
-    cx = api_info.search_engine_id  # search_engine_id
-    key = api_info.google_cloud_key  # API key for GOOGLE cloud project
+    cx = config.search_engine_id  # search_engine_id
+    key = config.google_cloud_key  # API key for GOOGLE cloud project
 
     url = [url]
 
@@ -29,7 +29,7 @@ def is_indexed(url):
 
     is_indexed_ = True
     for row in range(0, len(search_results)):
-        print(search_results['title'].iloc[row])
+        # print(search_results['title'].iloc[row])
         if pd.isnull(search_results['title'].iloc[row]):
             is_indexed_ = False
 

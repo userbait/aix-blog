@@ -1,5 +1,5 @@
 .idea/
 .venv/
 cache/
-/api_info.py
+/config.py
 /phishing_sites_detection.iml
