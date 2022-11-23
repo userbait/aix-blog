@@ -44,7 +44,7 @@ if __name__ == "__main__":
     # 이상치 제거(nb_hyperlinks) / a 태그의 개수는 0 혹은 양수만 가능
     data = data.drop(data.index[data['nb_hyperlinks'] < 0])
 
-    # 데이터 셋 분리(독립변수 x / 종속변수 y)
+    # 데이터 전처리(피처 선택) / 데이터 셋 분리(독립변수 x / 종속변수 y)
     x = data[['length_url', 'shortening_service', 'nb_at', 'nb_hyphens',
              'https_token', 'nb_www', 'dns_record', 'web_traffic', 'google_index', 'nb_hyperlinks']]
     y = data['status']
