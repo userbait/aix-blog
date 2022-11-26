@@ -17,18 +17,21 @@ if __name__ == "__main__":
     mask = data['shortening_service'].isin([0, 1])
     data = data[mask]
 
-    # 이상치 제거(nb_at) / url의 @ 개수는 0 혹은 양수만 가능
+    # 이상치 제거(nb_at) / url의 @ 개수는 0 혹은 양의 정수만 가능
     data = data.drop(data.index[data['nb_at'] < 0])
+    data = data[data['nb_at'].astype(str).str.isdigit()]
 
-    # 이상치 제거(nb_hyphens) / url에 하이픈 개수는 0 혹은 양수만 가능
+    # 이상치 제거(nb_hyphens) / url에 하이픈 개수는 0 혹은 양의 정수만 가능
     data = data.drop(data.index[data['nb_hyphens'] < 0])
+    data = data[data['nb_hyphens'].astype(str).str.isdigit()]
 
     # 이상치 제거(https_token) / https 프로토콜이 사용되었는가 아닌가(0, 1)
     mask = data['https_token'].isin([0, 1])
     data = data[mask]
 
-    # 이상치 제거(nb_www) / www 서브 도메인의 개수는 0 혹은 양수만
+    # 이상치 제거(nb_www) / www 서브 도메인의 개수는 0 혹은 양의 정수만
     data = data.drop(data.index[data['nb_www'] < 0])
+    data = data[data['nb_www'].astype(str).str.isdigit()]
 
     # 이상치 제거(dns_record) / dns 서버에 기록이 있는가 아닌가(0, 1)
     mask = data['dns_record'].isin([0, 1])
@@ -38,15 +41,17 @@ if __name__ == "__main__":
     mask = data['google_index'].isin([0, 1])
     data = data[mask]
 
-    # 이상치 제거(web_traffic) / 트래픽은 0 혹은 양수만 가능
-    data = data.drop(data.index[data['web_traffic'] < 0])
+    # 이상치 제거(page_rank) / Page rank는 0 혹은 양의 정수만 가능
+    data = data.drop(data.index[data['page_rank'] < 0])
+    data = data[data['page_rank'].astype(str).str.isdigit()]
 
-    # 이상치 제거(nb_hyperlinks) / a 태그의 개수는 0 혹은 양수만 가능
+    # 이상치 제거(nb_hyperlinks) / a 태그의 개수는 0 혹은 양의 정수만 가능
     data = data.drop(data.index[data['nb_hyperlinks'] < 0])
+    data = data[data['nb_hyperlinks'].astype(str).str.isdigit()]
 
     # 데이터 전처리(피처 선택) / 데이터 셋 분리(독립변수 x / 종속변수 y)
     x = data[['length_url', 'shortening_service', 'nb_at', 'nb_hyphens',
-             'https_token', 'nb_www', 'dns_record', 'web_traffic', 'google_index', 'nb_hyperlinks']]
+             'https_token', 'nb_www', 'dns_record', 'page_rank', 'google_index', 'nb_hyperlinks']]
     y = data['status']
 
     # 학습 데이터, 검증 데이터 분리

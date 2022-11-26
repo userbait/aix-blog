@@ -9,6 +9,7 @@ import config
 import advertools as adv
 from urllib.parse import urlparse
 import dns.resolver
+import requests
 
 
 def is_indexed(url):
@@ -34,6 +35,21 @@ def is_indexed(url):
             is_indexed_ = False
 
     return is_indexed_
+
+
+def get_page_rank(url):
+    """
+    OPR(open page rank)에서 page rank 확인
+    :param url: String
+    :return: int
+    """
+    domain = urlparse(url).netloc  # domain name with subdomain if exists
+    headers = {'API-OPR':config.page_rank_key}
+    url = 'https://openpagerank.com/api/v1.0/getPageRank?domains%5B0%5D=' + domain
+    request = requests.get(url, headers=headers)
+    result = request.json()
+
+    return result['response'][0]['page_rank_integer']
 
 
 def has_dns_record(url):
@@ -76,4 +92,4 @@ def has_dns_record(url):
 
 
 if __name__ == '__main__':
-    print(is_indexed('https://naalksdfj28ocnNCsed.com'))
+    print(get_page_rank('https://naver.com'))

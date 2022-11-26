@@ -1,6 +1,15 @@
 from urllib.parse import urlparse
 
 
+def get_url_length(url):
+    """
+    url의 길이를 확인
+    :param url: String
+    :return: int
+    """
+    return len(url)
+
+
 def is_shortened_url(url):
     """
     url 단축 서비스가 사용되었는지 확인
@@ -27,6 +36,38 @@ def is_shortened_url(url):
     return is_shortened
 
 
+def get_nb_at(url):
+    """
+    url에서 @ 개수를 확인
+    :param url: String
+    :return: int
+    """
+    at_cnt = url.count('@')
+
+    return at_cnt
+
+def get_nb_hyphen(url):
+    """
+    url에서 - 개수를 확인
+    :param url: String
+    :return: int
+    """
+    hyphen_cnt = url.count('-')
+
+    return hyphen_cnt
+
+
+def get_nb_www(url):
+    """
+    www subdomain이 적용되었는지 확인
+    :param url: String
+    :return: int
+    """
+    www_cnt = url.count('www')
+
+    return www_cnt
+
+
 def use_https(url):
     """
     https 프로토콜이 적용되었는지 확인
@@ -43,5 +84,5 @@ def use_https(url):
 
 
 if __name__ == '__main__':
-    print(is_shortened_url('https://tinyurl.com/asdlas'))
-    print(use_https('https://www.naver.com'))
+    print(get_nb_at('https://wwwwww.tin@yurl.com/asdlas'))
+
