@@ -5,7 +5,7 @@ import joblib
 
 
 if __name__ == "__main__":
-    data = pd.read_csv('../urlSet.csv', nrows=10000)
+    data = pd.read_csv('../urlSet.csv')
 
     # 결측값 제거
     data = data.dropna(axis=0)
